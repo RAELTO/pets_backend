@@ -7,7 +7,7 @@ cloudinary.config( process.env.CLOUDINARY_URL );
 
 const getAllUsers = async(req = request, res = response) => {//Brings all the users in the DB
 
-    const users = await User.findAll({include: [{ model: Role}]});
+    const users = await User.findAll({attributes: { exclude: ['role_id'] },include: [{ model: Role}]});
 
     if (users.length > 0) {
         res.json({
@@ -20,7 +20,7 @@ const getAllUsers = async(req = request, res = response) => {//Brings all the us
 
 const getOneUser = async(req = request, res = response) => {//brings an user from the DB by using an ID
 
-    const user = await User.findOne({where: { id: req.params.id }, include: [{ model: Role}]});
+    const user = await User.findOne({where: { id: req.params.id }, attributes: { exclude: ['role_id'] }, include: [{ model: Role}]});
 
     if (user) {
         res.json({
