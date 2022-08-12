@@ -1,14 +1,15 @@
 const { response, request } = require('express');
-const { Type, User, Pet } = require('../models');
+const { Type, User, Pet, Race } = require('../models');
 
 const cloudinary = require('cloudinary').v2
 cloudinary.config( process.env.CLOUDINARY_URL );
 
 const getAllPets = async(req = request, res = response) => {
-    const pets = await Pet.findAll({include: [{ model: Type}, { model: User }]});
+    const pets = await Pet.findAll({include: [{ model: Type}, { model: User }, { model: Race }]});
 
     if (pets.length > 0) {
         res.json({
+            total: pets.length,
             pets
         });
     }else{
@@ -94,7 +95,7 @@ const updateOnePet = async(req = request, res = response) => {
             }
         })
             .then(pet => {
-                if (pet != 0) {
+                if (pet) {
                     res.status(200).send(`Pet with id: ${req.params.id} was updated`);
                 }else{
                     res.status(404).send(`Pet with id: ${req.params.id} not found`);

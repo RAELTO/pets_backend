@@ -5,6 +5,8 @@ const Server = require('./server');
 const Type = require('./type');
 const User = require('./user');
 
+//--- Models relationship to be included in the get all requests and get one requests ---
+
 //FK user-role
 User.belongsTo(Role, {foreignKey: 'role_id'});
 Role.hasMany(User, {foreignKey: 'role_id'});

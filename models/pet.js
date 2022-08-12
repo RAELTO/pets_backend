@@ -21,11 +21,10 @@ const Pet = sequelize.define('pets', {
     type_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: null,
     },
     user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        defaultValue: null,
     },
     status: {
         type: DataTypes.BOOLEAN,
