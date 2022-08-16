@@ -4,6 +4,8 @@ const { Type, User, Pet, Race } = require('../models');
 const cloudinary = require('cloudinary').v2
 cloudinary.config( process.env.CLOUDINARY_URL );
 
+
+//Obtener todas las mascotas de la base de datos
 const getAllPets = async(req = request, res = response) => {
     const pets = await Pet.findAll({include: [{ model: Type}, { model: User }, { model: Race }]});
 
@@ -17,6 +19,8 @@ const getAllPets = async(req = request, res = response) => {
     }
 };
 
+
+//Obtener una mascotas por id de la base de datos
 const getOnePet = async(req = request, res = response) => {
     const pets = await Pet.findOne({where: { id: req.params.id }, include: [{ model: Type}, { model: User }]});
 
@@ -30,6 +34,8 @@ const getOnePet = async(req = request, res = response) => {
     
 };
 
+
+//Crear una mascota en la base de datos
 const createNewPet = async(req = request, res = response) => {
 
     await Pet.create({
@@ -80,6 +86,8 @@ const createNewPet = async(req = request, res = response) => {
     
 };
 
+
+//Actualizar una mascota por id de la base de datos
 const updateOnePet = async(req = request, res = response) => {
 
         await Pet.update({
@@ -127,6 +135,8 @@ const updateOnePet = async(req = request, res = response) => {
         }
 };
 
+
+//Eliminar un mascota por su id en la base de datos
 const deleteOnePet = async(req = request, res = response) => {
 
     //Limpiar imagenes

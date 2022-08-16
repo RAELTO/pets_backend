@@ -32,6 +32,8 @@ const getOneUser = async(req = request, res = response) => {//brings an user fro
     
 };
 
+
+//crea un nuevo usuario en la BD
 const createNewUser = async(req = request, res = response) => {
 
     // pass encrypt
@@ -184,6 +186,8 @@ const updateOneUser = async(req = request, res = response) => {//function to upd
     }
 };
 
+
+//elimina un usuario de la BD
 const deleteOneUser = async(req = request, res = response) => {
 
     //deletes the user image from the cloudinary storage

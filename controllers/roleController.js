@@ -1,6 +1,8 @@
 const { response, request } = require('express');
 const Role = require('../models/roles');
 
+
+//Obtener todo los roles registrados en la base de datos
 const getAllRoles = async(req = request, res = response) => {//brings all the roles from the DB
     await Role.findAll({attributes:[
         'id', 'role_name'

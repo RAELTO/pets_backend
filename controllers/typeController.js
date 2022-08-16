@@ -1,6 +1,7 @@
 const { response, request } = require('express');
 const Type = require('../models/type');
 
+//obtiene todos los tipos de usuarios de la bd
 const getAllTypes = async(req = request, res = response) => {
     await Type.findAll({attributes:[
         'id', 'type_name'
@@ -20,7 +21,7 @@ const getAllTypes = async(req = request, res = response) => {
         });
 };
 
-
+//obtiene un tipo de usuario de la bd
 const getOneType = async(req = request, res = response) => {
     //res.send(`Get course ${req.params.id}`);
     const type = await Type.findOne({where: { id: req.params.id }});
@@ -35,7 +36,7 @@ const getOneType = async(req = request, res = response) => {
     
 };
 
-
+//Crea un nuevo tipo de usuarios en la bd
 const createNewType= async(req = request, res = response) => {
 
     // pass encrypt
@@ -62,6 +63,8 @@ const createNewType= async(req = request, res = response) => {
     
 };
 
+
+//actualiza un tipo de usuario en la bd
 const updateOneType = async(req = request, res = response) => {
 
     // pass encrypt
@@ -91,7 +94,7 @@ const updateOneType = async(req = request, res = response) => {
 };
 
 
-
+//elimina un tipo de usuario en la BD
 const deleteOneType = async(req = request, res = response) => {
 
 

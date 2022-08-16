@@ -1,6 +1,8 @@
 const { response, request } = require('express');
 const Race = require('../models/race');
 
+
+//Obtener todas las razas de la base de datos
 const getAllRaces = async(req = request, res = response) => {
     await Race.findAll({attributes:[
         'id', 'race_name'
@@ -21,8 +23,9 @@ const getAllRaces = async(req = request, res = response) => {
 };
 
 
+//Obtener una raza por id de la base de datos
 const getOneRace = async(req = request, res = response) => {
-    //res.send(`Get course ${req.params.id}`);
+    
     const race = await Race.findOne({where: { id: req.params.id }});
 
     if (race) {
@@ -35,10 +38,10 @@ const getOneRace = async(req = request, res = response) => {
     
 };
 
-
+//Crear una raza en la base de datos
 const createNewRace = async(req = request, res = response) => {
 
-    // pass encrypt
+ 
 
     await Race.create({
         race_name: req.body.race_name,
@@ -62,9 +65,11 @@ const createNewRace = async(req = request, res = response) => {
     
 };
 
+
+//Actualizar una raza por id de la base de datos
 const updateOneRace = async(req = request, res = response) => {
 
-    // pass encrypt
+    
 
     await Race.update({
         race_name: req.body.race_name,
@@ -91,7 +96,7 @@ const updateOneRace = async(req = request, res = response) => {
 };
 
 
-
+//Eliminar una raza por su id en la base de datos
 const deleteOneRace = async(req = request, res = response) => {
 
 
